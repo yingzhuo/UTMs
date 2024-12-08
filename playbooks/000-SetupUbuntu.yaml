@@ -2,11 +2,11 @@
 # 初始化Ubuntu
 # -------------------------------------------------------------------------------------------------
 
-- name: "Setup ubuntu"
+- name: "初始化乌班图"
   hosts: all
   remote_user: yingzhuo
   tasks:
-    - name: "Install some useful software"
+    - name: "安装一些常用软件"
       ansible.builtin.apt:
         state: present
         update_cache: true
@@ -20,3 +20,4 @@
           - figlet
           - net-tools
           - cowsay
+        clean: true

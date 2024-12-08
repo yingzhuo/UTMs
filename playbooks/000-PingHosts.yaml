@@ -1,0 +1,5 @@
+- name: "测试是否能联通所有被控主机"
+  hosts: all
+  tasks:
+    - name: '测试'
+      ansible.builtin.ping: {}
