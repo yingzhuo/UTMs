@@ -2,9 +2,13 @@
 
 因应开发与学习之需要。使用[UTM](https://getutm.app)搭建自己的Linux集群。
 
-### 操作系统选型
+### 操作系统
 
 * Linux: ubuntu-24.04.1-live-server-arm64
+
+### 规划
+
+* 软件安装目录: `/opt/`
 
 ### 许可证
 
