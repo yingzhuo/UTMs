@@ -1,0 +1,14 @@
+# -------------------------------------------------------------------------------------------------
+# UTMs 主机清单
+# -------------------------------------------------------------------------------------------------
+192.168.65.3
+
+[all:vars]
+ansible_connection         = ssh
+ansible_ssh_port           = 22
+ansible_user               = yingzhuo
+ansible_ssh_pass           = yingzhuo
+ansible_become             = yes
+ansible_become_user        = root
+ansible_become_method      = sudo
+ansible_python_interpreter = /usr/bin/python3
