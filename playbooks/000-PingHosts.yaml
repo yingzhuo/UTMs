@@ -2,4 +2,5 @@
   hosts: all
   tasks:
     - name: '测试'
-      ansible.builtin.ping: {}
+      ansible.builtin.ping:
+        data: "pong"
