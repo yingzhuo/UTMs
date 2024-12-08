@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"makefile.configureOnOpen": false
+		"makefile.configureOnOpen": false,
+		"ansible.python.interpreterPath": "/opt/homebrew/bin/python3"
 	}
 }

@@ -1,0 +1,22 @@
+# -------------------------------------------------------------------------------------------------
+# 初始化Ubuntu
+# -------------------------------------------------------------------------------------------------
+
+- name: "Setup ubuntu"
+  hosts: all
+  remote_user: yingzhuo
+  tasks:
+    - name: "Install some useful software"
+      ansible.builtin.apt:
+        state: present
+        update_cache: true
+        name:
+          - zip
+          - unzip
+          - gcc
+          - make
+          - g++
+          - git
+          - figlet
+          - net-tools
+          - cowsay
