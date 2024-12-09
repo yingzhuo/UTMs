@@ -6,9 +6,9 @@
 
 * Linux: ubuntu-24.04.1-live-server-arm64
 
-### 规划
+### 服务
 
-* 软件安装目录: `/opt/`
+* [redis](./wiki/redis.md)
 
 ### 许可证
 
