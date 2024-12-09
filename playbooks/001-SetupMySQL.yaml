@@ -1,4 +1,4 @@
-- name: "配置MySQL实例"
+- name: "安装和配置MySQL服务"
   hosts: mysql
   gather_facts: false
   tasks:
