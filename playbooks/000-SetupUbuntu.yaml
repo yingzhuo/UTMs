@@ -19,6 +19,8 @@
           - unzip
           - gcc
           - make
+          - automake
+          - autoconf
           - g++
           - git
           - figlet
@@ -26,6 +28,10 @@
           - cowsay
           - wget
           - curl
+          - libncurses5-dev
+          - libncursesw5-dev
+          - sysstat
+          - libaio-dev
         clean: true
     - name: "清理apt缓存"
       ansible.builtin.command:
