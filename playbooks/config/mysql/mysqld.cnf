@@ -15,18 +15,27 @@
 # 基础
 # -------
 user		                   = mysql
+port		                   = 3306
 pid-file	                   = /var/run/mysqld/mysqld.pid
 socket	                       = /var/run/mysqld/mysqld.sock
-port		                   = 3306
 datadir	                       = /var/lib/mysql
-character_set_server           = utf8mb4  
-collation_server               = utf8mb4_bin
+
+# -------
+# 字符集
+# -------
+character_set_server           = utf8mb4
+collation_server               = utf8mb4_0900_ai_ci
+
+# -------
+# 网络
+# -------
+bind-address		           = *
 
 # -------
 # 安全
 # -------
 require_secure_transport       = OFF
-default_authentication_plugin  = mysql_native_password
+default_authentication_plugin  = caching_sha2_password
 
 # -------
 # "mysqlx"插件
@@ -35,21 +44,19 @@ skip_mysqlx                    = ON
 skip_mysqlx_cache_cleaner      = ON
 
 # -------
-# "validate_password" 插件
+# "validate_password"插件 密码强度设置 
 # -------
-# plugin_load_add              = validate_password.so
+plugin_load_add                   = validate_password.so
+validate_password_check_user_name = OFF
+validate_password_length          = 4
+validate_password_policy          = LOW
 
-# ------- 
+# -------
 # 存储引擎相关
 # -------
 skip_federated                 = ON
 skip_blackhole                 = ON
 skip_archive                   = ON
-
-# ------- 
-# 网络相关
-# -------
-bind-address		           = *
 
 # ================================================================================================= 
 # 以下待整理
@@ -58,7 +65,6 @@ bind-address		           = *
 # If MySQL is running as a replication slave, this should be
 # changed. Ref https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_tmpdir
 # tmpdir		= /tmp
-
 
 #
 # * Fine Tuning

@@ -13,3 +13,4 @@ protocol                                = TCP
 host                                    = localhost
 user                                    = root
 password                                = root
+default_character_set                   = utf8mb4

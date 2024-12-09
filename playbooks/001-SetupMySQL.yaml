@@ -2,12 +2,12 @@
   hosts: mysql
   gather_facts: false
   tasks:
-    - name: "安装MySQL服务"
-      ansible.builtin.apt:
-        state: present
-        update_cache: true
-        name:
-          - mysql-server
+    # - name: "安装MySQL服务"
+    #   ansible.builtin.apt:
+    #     state: present
+    #     update_cache: true
+    #     name:
+    #       - mysql-server
     - name: "拷贝配置文件 (mysql)"
       ansible.builtin.copy:
         src: config/mysql/mysql.cnf
