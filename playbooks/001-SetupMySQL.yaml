@@ -1,0 +1,29 @@
+- name: "配置MySQL实例"
+  hosts: mysql
+  gather_facts: false
+  tasks:
+    - name: "安装MySQL服务"
+      ansible.builtin.apt:
+        state: present
+        update_cache: true
+        name:
+          - mysql-server
+    - name: "拷贝配置文件 (mysql)"
+      ansible.builtin.copy:
+        src: config/mysql/mysql.cnf
+        dest: /etc/mysql/mysql.conf.d/mysql.cnf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: "拷贝配置文件 (mysqld)"
+      ansible.builtin.copy:
+        src: config/mysql/mysqld.cnf
+        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: "重启MySQL服务"
+      ansible.builtin.service:
+        name: mysql
+        state: restarted
+        enabled: true

@@ -1,6 +1,7 @@
 - name: "测试是否能联通所有被控主机"
-  hosts: all
+  hosts: 192.168.65.3
+  gather_facts: false
   tasks:
     - name: '测试'
       ansible.builtin.ping:
-        data: "pong"
+        data: "Hi"
