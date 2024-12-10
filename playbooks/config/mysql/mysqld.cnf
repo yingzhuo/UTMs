@@ -60,7 +60,7 @@ skip_archive                   = ON
 # -------
 # InnoDB引擎
 # -------
-innodb_buffer_pool_size       = 268435456 #256mb
+innodb_buffer_pool_size       = 256M
 innodb_buffer_pool_instances  = 1
 
 # -------
