@@ -8,6 +8,7 @@
 
 ### 服务
 
+* [mysql](./wiki/mysql.md)
 * [redis](./wiki/redis.md)
 
 ### 许可证

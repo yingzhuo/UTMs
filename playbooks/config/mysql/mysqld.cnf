@@ -1,12 +1,9 @@
+# =================================================================================================
+# 本配置文件是服务器端配置文件
 #
-# The MySQL database server configuration file.
-#
-# One can use all long options that the program supports.
-# Run program with --help to get a list of available options and with
-# --print-defaults to see which it would actually understand and use.
-#
-# For explanations see
-# http://dev.mysql.com/doc/mysql/en/server-system-variables.html
+# 参考:
+# (1) http://dev.mysql.com/doc/mysql/en/server-system-variables.html
+# =================================================================================================
 
 
 [mysqld]
@@ -52,8 +49,10 @@ validate_password_length          = 4
 validate_password_policy          = LOW
 
 # -------
-# 其他存储引擎相关
+# 存储引擎
 # -------
+default_storage_engine         = InnoDB
+default_tmp_storage_engine     = InnoDB
 skip_federated                 = ON
 skip_blackhole                 = ON
 skip_archive                   = ON
@@ -61,11 +60,12 @@ skip_archive                   = ON
 # -------
 # InnoDB引擎
 # -------
+innodb_buffer_pool_size       = 268435456 #256mb
+innodb_buffer_pool_instances  = 1
 
 # -------
 # SQL Mode
 # -------
-
 # 通过 "select @@session.sql_mode;" 查看
 sql_mode = ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 

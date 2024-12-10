@@ -1,7 +1,9 @@
+# =================================================================================================
+# 本配置文件是客户端端配置文件
 #
-# The MySQL database client configuration file
-#
-# Ref to https://dev.mysql.com/doc/refman/en/mysql-command-options.html
+# 参考
+# (1) https://dev.mysql.com/doc/refman/en/mysql-command-options.html
+# =================================================================================================
 
 [mysql]
 prompt                                  = (\\u@\\h:\\p) [\\d]>\\_
