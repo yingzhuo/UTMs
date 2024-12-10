@@ -52,11 +52,27 @@ validate_password_length          = 4
 validate_password_policy          = LOW
 
 # -------
-# 存储引擎相关
+# 其他存储引擎相关
 # -------
 skip_federated                 = ON
 skip_blackhole                 = ON
 skip_archive                   = ON
+
+# -------
+# InnoDB引擎
+# -------
+
+# -------
+# SQL Mode
+# -------
+
+# 通过 "select @@session.sql_mode;" 查看
+sql_mode = ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+
+# -------
+# 杂项
+# -------
+lower_case_table_names         = 0
 
 # ================================================================================================= 
 # 以下待整理

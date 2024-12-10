@@ -7,10 +7,12 @@
 prompt                                  = (\\u@\\h:\\p) [\\d]>\\_
 skip_auto_rehash                        = ON
 default_character_set                   = utf8mb4
+no_beep
 
 [client]  
 protocol                                = TCP  
 host                                    = localhost
+port                                    = 3306
 user                                    = root
 password                                = root
 default_character_set                   = utf8mb4

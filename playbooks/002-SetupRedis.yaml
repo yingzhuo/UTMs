@@ -26,3 +26,4 @@
         name: redis-6380
         state: stopped
         enabled: false
+      changed_when: false
