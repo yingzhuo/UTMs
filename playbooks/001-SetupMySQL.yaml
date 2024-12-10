@@ -1,3 +1,9 @@
+# -------------------------------------------------------------------------------------------------
+# 数据库第一次安装后密码是空白字符串。需要以下SQL来重置root密码
+#   ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'root';
+#   UPDATE mysql.user SET host = '%' WHERE host = 'localhost' AND user = 'root';
+#   FLUSH PRIVILEGES;
+# -------------------------------------------------------------------------------------------------
 - name: "安装和配置MySQL服务"
   hosts: mysql
   gather_facts: false
