@@ -11,6 +11,7 @@
         mode: 'u=rwx,g=rx,o=rx'
       with_items:
         - /opt/redis/
+        - /opt/redis/bin/
         - /opt/redis/etc/
         - /opt-data/redis-6379/
         - /opt-data/redis-6380/

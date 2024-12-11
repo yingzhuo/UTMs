@@ -1,0 +1,63 @@
+- name: "编译安装Redis"
+  gather_facts: false
+  hosts: redis
+  vars:
+    redis_source_code_url: https://download.redis.io/redis-stable.tar.gz
+    redis_source_code_tgz: /tmp/redis-stable.tar.gz
+    redis_source_code_unarchived: /tmp/redis-stable/
+  tasks:
+    - name: "下载源代码"
+      ansible.builtin.get_url:
+        url: "{{ redis_source_code_url }}"
+        dest: "{{ redis_source_code_tgz }}"
+        owner: root
+        group: root
+        mode: '0644'
+    - name: "解压缩源码包"
+      ansible.builtin.unarchive:
+        src: "{{ redis_source_code_tgz }}"
+        dest: "/tmp"
+        remote_src: true
+        owner: root
+        group: root
+    - name: "编译源码"
+      community.general.make:
+        chdir: "{{ redis_source_code_unarchived }}"
+        target: all
+    - name: "创建安装目录"
+      ansible.builtin.file:
+        name: "{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,g=rx,o=rx'
+      with_items:
+        - /opt/redis/
+        - /opt/redis/bin/
+        - /opt/redis/etc/
+        - /opt-data/redis-6379/
+        - /opt-data/redis-6380/
+        - /opt-data/redis-redlock/
+    - name: "拷贝可执行文件"
+      ansible.builtin.copy:
+        remote_src: true
+        src: "{{ redis_source_code_unarchived }}src/{{ item }}"
+        dest: "/opt/redis/bin/{{ item }}"
+        owner: root
+        group: root
+        mode: 'u=rwx,g=rwx,o=rx'
+      with_items:
+        - redis-benchmark
+        - redis-check-aof
+        - redis-check-rdb
+        - redis-cli
+        - redis-sentinel
+        - redis-server
+        - redis-trib.rb
+    - name: "删除中间文件"
+      ansible.builtin.file:
+        state: absent
+        name: "{{ item }}"
+      with_items:
+        - "{{ redis_source_code_tgz }}"
+        - "{{ redis_source_code_unarchived }}"

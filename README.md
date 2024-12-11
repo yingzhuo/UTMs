@@ -20,6 +20,7 @@
   * `ansible-playbook ./playbooks/mysql/99-InstallMySQL.yaml`
 * Redis主题
   * `ansible-playbook ./playbooks/redis/01-SetupRedis.yaml`
+  * `ansible-playbook ./playbooks/redis/99-CompileRedis.yaml`
 
 ### 许可证
 
