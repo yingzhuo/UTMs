@@ -2,6 +2,13 @@
   hosts: redis
   gather_facts: false
   tasks:
+    - name: "拷贝配置文件 (公用)"
+      ansible.builtin.copy:
+        src: files/redis-included.conf
+        dest: /opt/redis/etc/redis-included.conf
+        owner: root
+        group: root
+        mode: '0644'
     - name: "拷贝配置文件 (6379)"
       ansible.builtin.copy:
         src: files/redis-6379.conf
