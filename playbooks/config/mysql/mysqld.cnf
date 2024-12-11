@@ -5,7 +5,6 @@
 # (1) http://dev.mysql.com/doc/mysql/en/server-system-variables.html
 # =================================================================================================
 
-
 [mysqld]
 
 # -------
@@ -60,6 +59,8 @@ skip_archive                   = ON
 # -------
 # InnoDB引擎
 # -------
+
+# BufferPoolSize总量小于1G时 InnoDB引擎只会分配一个实例
 innodb_buffer_pool_size       = 256M
 innodb_buffer_pool_instances  = 1
 
