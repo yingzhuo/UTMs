@@ -32,9 +32,23 @@
           to: /opt/redis/etc/redis-6380.conf
         - from: files/redis-redlock.conf
           to: /opt/redis/etc/redis-redlock.conf
+    - name: "拷贝服务文件"
+      ansible.builtin.copy:
+        src: "files/{{ item }}"
+        dest: "/etc/systemd/system/{{ item }}"
+        owner: root
+        group: root
+        mode: "u=rw,g=r,o=r"
+      with_items:
+        - redis-6379.service
+        - redis-6380.service
+        - redis-redlock.service
+    - name: "Daemon Reload"
+      ansible.builtin.systemd:
+        daemon_reload: true
     - name: "启动Redis服务 (多个)"
       ansible.builtin.service:
-        name: redis-6380
+        name: "{{ item }}"
         state: restarted
         enabled: true
       with_items:
