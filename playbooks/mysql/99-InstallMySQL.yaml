@@ -16,14 +16,14 @@
           - mysql-server
     - name: "拷贝配置文件 (mysql)"
       ansible.builtin.copy:
-        src: config/mysql/mysql.cnf
+        src: files/mysql.cnf
         dest: /etc/mysql/mysql.conf.d/mysql.cnf
         owner: root
         group: root
         mode: '0644'
     - name: "拷贝配置文件 (mysqld)"
       ansible.builtin.copy:
-        src: config/mysql/mysqld.cnf
+        src: files/mysqld.cnf
         dest: /etc/mysql/mysql.conf.d/mysqld.cnf
         owner: root
         group: root
@@ -39,5 +39,4 @@
         name: yingzhuo
         groups:
           - mysql
-        state: present
         append: true

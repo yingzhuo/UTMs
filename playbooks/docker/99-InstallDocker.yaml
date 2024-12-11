@@ -33,7 +33,7 @@
         state: absent
     - name: "拷贝APT清单文件"
       ansible.builtin.copy:
-        src: config/docker/apt-docker.list
+        src: files/apt-docker.list
         dest: /etc/apt/sources.list.d/docker.list
         owner: root
         group: root
