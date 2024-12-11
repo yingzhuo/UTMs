@@ -1,0 +1,25 @@
+- name: "安装DockerCompose"
+  hosts: docker
+  gather_facts: false
+  vars:
+    download_url: https://github.com/docker/compose/releases/download/v2.31.0/docker-compose-linux-aarch64
+    compose_dest: /usr/local/sbin/docker-compose
+  tasks:
+    - name: "测试DockerCompose是否已安装Docker"
+      ansible.builtin.stat:
+        path: "{{ compose_dest }}"
+      register: "compose_exists"
+    - name: "调试"
+      ansible.builtin.debug:
+        msg: "DockerCompse已安装"
+      when: "compose_exists.stat"
+    - name: "退出"
+      ansible.builtin.meta: end_play
+      when: "compose_exists.stat"
+    - name: "下载DockerCompose"
+      ansible.builtin.get_url:
+        url: "{{ download_url }}"
+        dest: "{{ compose_dest }}"
+        owner: root
+        group: root
+        mode: "u=rx,g=rx,o=x"

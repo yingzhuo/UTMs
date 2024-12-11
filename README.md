@@ -14,11 +14,12 @@
 ### 剧本
 
 * Docker主题
-  * 安装 - `ansible-playbook ./playbooks/docker/99-InstallDocker.yaml`
+  * `ansible-playbook ./playbooks/docker/99-InstallDocker.yaml`
+  * `ansible-playbook ./playbooks/docker/99-InstallDockerCompose.yaml`
 * MySQL主题
-  * 安装 - `ansible-playbook ./playbooks/mysql/99-InstallMySQL.yaml`
+  * `ansible-playbook ./playbooks/mysql/99-InstallMySQL.yaml`
 * Redis主题
-  * 配置 - `ansible-playbook ./playbooks/redis/01-SetupRedis.yaml`
+  * `ansible-playbook ./playbooks/redis/01-SetupRedis.yaml`
 
 ### 许可证
 

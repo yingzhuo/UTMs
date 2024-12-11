@@ -1,14 +1,7 @@
 - name: "初始化乌班图"
   hosts: all
-  remote_user: yingzhuo
   gather_facts: false
   tasks:
-    - name: "更新apt缓存"
-      ansible.builtin.command:
-      args:
-        chdir: /usr/local/sbin
-        cmd: update-ubuntu
-      changed_when: false
     - name: "安装一些常用软件"
       ansible.builtin.apt:
         state: present
@@ -33,12 +26,11 @@
           - sysstat
           - libaio-dev
         clean: true
-    - name: "清理apt缓存"
-      ansible.builtin.command:
-      args:
-        chdir: /usr/local/sbin
-        cmd: clean-ubuntu
-      changed_when: false
     - name: "关闭防火墙"
       community.general.ufw:
         state: disabled
+    - name: "更新/tmp目录权限"
+      ansible.builtin.file:
+        path: /tmp
+        mode: '0777'
+        state: directory
