@@ -24,7 +24,7 @@
       community.general.make:
         chdir: "{{ redis_source_code_unarchived }}"
         target: all
-    - name: "创建安装目录"
+    - name: "创建安装目录和数据目录"
       ansible.builtin.file:
         name: "{{ item }}"
         state: directory
@@ -54,6 +54,18 @@
         - redis-sentinel
         - redis-server
         - redis-trib.rb
+    - name: "拷贝配置文件"
+      ansible.builtin.copy:
+        src: "files/{{ item }}"
+        dest: "/opt/redis/etc/{{ item }}"
+        owner: root
+        group: root
+        mode: '0644'
+      with_items:
+        - redis-included.conf
+        - redis-6379.conf
+        - redis-6380.conf
+        - redis-redlock.conf
     - name: "删除中间文件"
       ansible.builtin.file:
         state: absent

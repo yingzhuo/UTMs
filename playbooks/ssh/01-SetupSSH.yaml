@@ -1,0 +1,17 @@
+- name: "配置SSH服务"
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: "拷贝配置文件"
+      ansible.builtin.copy:
+        src: files/sshd_config
+        dest: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        mode: "u=rw,g=r,o=r"
+    - name: "重启SSH服务"
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+        enabled: true
+      changed_when: false

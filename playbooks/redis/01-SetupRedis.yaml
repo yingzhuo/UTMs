@@ -2,7 +2,7 @@
   hosts: redis
   gather_facts: false
   tasks:
-    - name: "安排配置目录和数据目录"
+    - name: "创建安装目录和数据目录"
       ansible.builtin.file:
         name: "{{ item }}"
         state: directory
@@ -18,20 +18,16 @@
         - /opt-data/redis-redlock/
     - name: "拷贝配置文件"
       ansible.builtin.copy:
-        src: "{{ item.from }}"
-        dest: "{{ item.to }}"
+        src: "files/{{ item }}"
+        dest: "/opt/redis/etc/{{ item }}"
         owner: root
         group: root
         mode: '0644'
       with_items:
-        - from: files/redis-included.conf
-          to: /opt/redis/etc/redis-included.conf
-        - from: files/redis-6379.conf
-          to: /opt/redis/etc/redis-6379.conf
-        - from: files/redis-6380.conf
-          to: /opt/redis/etc/redis-6380.conf
-        - from: files/redis-redlock.conf
-          to: /opt/redis/etc/redis-redlock.conf
+        - redis-included.conf
+        - redis-6379.conf
+        - redis-6380.conf
+        - redis-redlock.conf
     - name: "拷贝服务文件"
       ansible.builtin.copy:
         src: "files/{{ item }}"
@@ -55,3 +51,4 @@
         - redis-6379
         - redis-6380
         - redis-redlock
+      changed_when: false
