@@ -2,36 +2,41 @@
   hosts: redis
   gather_facts: false
   tasks:
-    - name: "拷贝配置文件 (公用)"
+    - name: "安排配置目录和数据目录"
+      ansible.builtin.file:
+        name: "{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,g=rx,o=rx'
+      with_items:
+        - /opt/redis/
+        - /opt/redis/etc/
+        - /opt-data/redis-6379/
+        - /opt-data/redis-6380/
+        - /opt-data/redis-redlock/
+    - name: "拷贝配置文件"
       ansible.builtin.copy:
-        src: files/redis-included.conf
-        dest: /opt/redis/etc/redis-included.conf
+        src: "{{ item.from }}"
+        dest: "{{ item.to }}"
         owner: root
         group: root
         mode: '0644'
-    - name: "拷贝配置文件 (6379)"
-      ansible.builtin.copy:
-        src: files/redis-6379.conf
-        dest: /opt/redis/etc/redis-6379.conf
-        owner: root
-        group: root
-        mode: '0644'
-    - name: "重启Redis服务 (6379)"
-      ansible.builtin.service:
-        name: redis-6379
-        state: restarted
-        enabled: true
-      changed_when: false
-    - name: "拷贝配置文件 (6380)"
-      ansible.builtin.copy:
-        src: files/redis-6380.conf
-        dest: /opt/redis/etc/redis-6380.conf
-        owner: root
-        group: root
-        mode: '0644'
-    - name: "停止Redis服务 (6380)"
+      with_items:
+        - from: files/redis-included.conf
+          to: /opt/redis/etc/redis-included.conf
+        - from: files/redis-6379.conf
+          to: /opt/redis/etc/redis-6379.conf
+        - from: files/redis-6380.conf
+          to: /opt/redis/etc/redis-6380.conf
+        - from: files/redis-redlock.conf
+          to: /opt/redis/etc/redis-redlock.conf
+    - name: "启动Redis服务 (多个)"
       ansible.builtin.service:
         name: redis-6380
-        state: stopped
-        enabled: false
-      changed_when: false
+        state: restarted
+        enabled: true
+      with_items:
+        - redis-6379
+        - redis-6380
+        - redis-redlock
