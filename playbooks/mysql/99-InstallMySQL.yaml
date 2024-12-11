@@ -25,20 +25,16 @@
         name:
           - mysql-server
         clean: true
-    - name: "拷贝配置文件 (mysql)"
+    - name: "拷贝配置文件"
       ansible.builtin.copy:
-        src: files/mysql.cnf
-        dest: /etc/mysql/mysql.conf.d/mysql.cnf
+        src: "files/{{ item }}"
+        dest: "/etc/mysql/mysql.conf.d/{{ item }}"
         owner: root
         group: root
         mode: '0644'
-    - name: "拷贝配置文件 (mysqld)"
-      ansible.builtin.copy:
-        src: files/mysqld.cnf
-        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
-        owner: root
-        group: root
-        mode: '0644'
+      with_items:
+        - mysql.cnf
+        - mysqld.cnf
     - name: "重启MySQL服务"
       ansible.builtin.service:
         name: mysql

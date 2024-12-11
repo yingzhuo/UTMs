@@ -17,10 +17,11 @@
   * `ansible-playbook ./playbooks/docker/99-InstallDocker.yaml`
   * `ansible-playbook ./playbooks/docker/99-InstallDockerCompose.yaml`
 * MySQL主题
+  * `ansible-playbook ./playbooks/mysql/01-SetupMySQL.yaml`
   * `ansible-playbook ./playbooks/mysql/99-InstallMySQL.yaml`
 * Redis主题
   * `ansible-playbook ./playbooks/redis/01-SetupRedis.yaml`
-  * `ansible-playbook ./playbooks/redis/99-CompileRedis.yaml`
+  * `ansible-playbook ./playbooks/redis/99-InstallRedis.yaml`
 
 ### 许可证
 
