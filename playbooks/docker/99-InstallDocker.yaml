@@ -1,12 +1,21 @@
 - name: "安装Docker"
-  gather_facts: false
   hosts: docker
+  gather_facts: false
   tasks:
+    - name: "检查Docker引擎是否已安装"
+      ansible.builtin.package_facts:
+        manager: auto
+    - name: "调试"
+      ansible.builtin.debug:
+        msg: "Docker引擎已经安装了"
+      when: "'docker-ce' in ansible_facts.packages"
+    - name: "退出"
+      ansible.builtin.meta: end_play
+      when: "'docker-ce' in ansible_facts.packages"
     - name: "安装必要的软件"
       ansible.builtin.apt:
         name:
           - ca-certificates
-          - curl
           - gnupg
         state: present
         update_cache: true

@@ -8,12 +8,23 @@
   hosts: mysql
   gather_facts: false
   tasks:
+    - name: "检查MySQL是否已安装"
+      ansible.builtin.package_facts:
+        manager: auto
+    - name: "调试"
+      ansible.builtin.debug:
+        msg: "MySQL已经安装了"
+      when: "'mysql-server' in ansible_facts.packages"
+    - name: "退出"
+      ansible.builtin.meta: end_play
+      when: "'mysql-server' in ansible_facts.packages"
     - name: "安装MySQL服务"
       ansible.builtin.apt:
         state: present
         update_cache: true
         name:
           - mysql-server
+        clean: true
     - name: "拷贝配置文件 (mysql)"
       ansible.builtin.copy:
         src: files/mysql.cnf
