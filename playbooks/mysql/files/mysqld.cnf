@@ -64,6 +64,9 @@ skip_archive                   = ON
 innodb_buffer_pool_size       = 256M
 innodb_buffer_pool_instances  = 1
 
+# 自适应Hash索引对B+树查找优化
+innodb_adaptive_hash_index    = 1
+
 # -------
 # SQL Mode
 # -------

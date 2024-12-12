@@ -22,6 +22,9 @@
 * Redis主题
   * `ansible-playbook ./playbooks/redis/01-SetupRedis.yaml`
   * `ansible-playbook ./playbooks/redis/99-InstallRedis.yaml`
+* 杂项
+  * `ansible-playbook ./playbooks/misc/01-SetupUbuntu.yaml`
+  * `ansible-playbook ./playbooks/misc/99-SetupSSH.yaml`
 
 ### 许可证
 

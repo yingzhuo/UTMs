@@ -6,6 +6,9 @@
 	],
 	"settings": {
 		"makefile.configureOnOpen": false,
-		"ansible.python.interpreterPath": "/opt/homebrew/bin/python3"
+		"ansible.python.interpreterPath": "/opt/homebrew/bin/python3",
+		"better-yaml.indentSeq": true,
+		"better-yaml.commentString": "",
+		"better-yaml.lineWidth": 100
 	}
 }
