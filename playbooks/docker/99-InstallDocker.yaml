@@ -62,7 +62,7 @@
         name: docker
         state: started
         enabled: true
-    - name: "普通账户加入docker属组"
+    - name: "更新yingzhuo属组"
       ansible.builtin.user:
         name: yingzhuo
         groups:

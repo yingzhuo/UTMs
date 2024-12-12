@@ -41,7 +41,7 @@
         state: restarted
         enabled: true
       changed_when: false
-    - name: "一般用户添加mysql属组"
+    - name: "更新yingzhuo属组"
       ansible.builtin.user:
         name: yingzhuo
         groups:

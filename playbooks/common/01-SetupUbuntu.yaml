@@ -34,3 +34,10 @@
         path: /tmp
         mode: '0777'
         state: directory
+    - name: "更新yingzhuo属组"
+      ansible.builtin.user:
+        name: yingzhuo
+        groups:
+          - adm
+          - sudo
+        append: true

@@ -15,3 +15,9 @@
         state: restarted
         enabled: true
       changed_when: false
+    - name: "更新yingzhuo属组"
+      ansible.builtin.user:
+        name: yingzhuo
+        groups:
+          - docker
+        append: true
